@@ -48,6 +48,10 @@ limitations under the License
       margin-bottom: 40px;
       z-index: 900;
       }
+	  .big-text {
+	  white-space:pre-wrap;
+	  word-wrap:break-word;
+	  }
     </style>
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -55,58 +59,78 @@ limitations under the License
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           <h2><b>PIZZA</b></h2>
-		  <button id="add" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent"><i role="presentation" class="material-icons">add</i><span class="visuallyhidden">Add</span></button>
-        </div>
+		</div>
       </header>
       <main class="mdl-layout__content">
         <div id="overview" class="mdl-layout__tab-panel is-active">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white"><i class="material-icons">play_circle_filled</i></header>
-            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
-                <h4>Features</h4>                Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse.
-              </div>
-              <div class="mdl-card__actions"><a href="#" class="mdl-button">Read our features</a></div>
-            </div>
-            <button id="btn1" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons">more_vert</i></button>
-            <ul for="btn1" class="mdl-menu mdl-js-menu mdl-menu--bottom-right">
-              <li class="mdl-menu__item">Lorem</li>
-              <li disabled="" class="mdl-menu__item">Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                <h4 class="mdl-cell mdl-cell--12-col">Details</h4>
-                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                  <div class="section__circle-container__circle mdl-color--primary"></div>
-                </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                  <h5>Lorem ipsum dolor sit amet</h5>                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="#">proident minim</a>.
-                </div>
-                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                  <div class="section__circle-container__circle mdl-color--primary"></div>
-                </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                  <h5>Lorem ipsum dolor sit amet</h5>                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis<a href="#">proident minim</a>.
-                </div>
-                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                  <div class="section__circle-container__circle mdl-color--primary"></div>
-                </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                  <h5>Lorem ipsum dolor sit amet</h5>                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis<a href="#">proident minim</a>.
-                </div>
-              </div>
-              <div class="mdl-card__actions"><a href="#" class="mdl-button">Read our features</a></div>
-            </div>
-            <button id="btn2" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons">more_vert</i></button>
-            <ul for="btn2" class="mdl-menu mdl-js-menu mdl-menu--bottom-right">
-              <li class="mdl-menu__item">Lorem</li>
-              <li disabled="" class="mdl-menu__item">Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
+
+		  
+		  
+<table>
+	<tr>
+		<td>
+			<p style="font-weight:bold; margin: 10px 10px 10px 5px">Nuevo Producto:</p>
+		</td>
+		<td>  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="text" id="name">
+				<label class="mdl-textfield__label" for="name" style="font-size:15px">Producto...</label>
+			</div>
+		</td>
+		<td>  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="text" id="price">
+				<label class="mdl-textfield__label" for="prace" style="font-size:15px">Precio...</label>
+			</div>
+		</td>
+		<td>
+			<button class="mdl-button mdl-js-button mdl-button--raised" style="margin: 10px 0px 10px 10px">
+				Agregar
+			</button>
+		</td>
+	</tr>
+</table>		  
+		  
+
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%;">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Producto</th>
+	  <th>Total</th>
+	  <th>#Personas</th>
+	  <th>Distribuido</th>
+	  <th>Personas en este Producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric big-text">Palitos de ajo</td>
+      <td>5000</td>
+	  <td>0</td>
+	  <td>-</td>
+	  <td class="big-text">-</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric big-text">Loh Muffins</td>
+      <td>3000</td>
+	  <td>3</td>
+	  <td>1000</td>
+	  <td class="big-text">Tomimi, Willy, Eduardo</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric big-text">La Cartulina</td>
+      <td>1600</td>
+	  <td>2</td>
+	  <td>800</td>
+	  <td class="big-text">Kyra, Eduardo</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+	<h1 style="margin: 10px 10px 10px 5px; font-weight:bold;">Total a Pagar:</h1>
+	<h1 style="margin: 10px 10px 10px 5px; font-weight:bold;">1800</h1>
+</section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text">
