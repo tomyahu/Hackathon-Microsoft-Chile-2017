@@ -111,6 +111,7 @@ var io = require('socket.io')(server);
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('add-product', function(data) {
+		console.log("Recibí algo! " + data.name + ", " + data.price);
     state.products.push(data);
     // Broadcast info about this
   });
