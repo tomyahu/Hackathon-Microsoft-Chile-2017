@@ -1,7 +1,7 @@
 $(function () {
   var socket = io();
 
-  $('#agregar-producto').on('click', function(e) {
+  $('#agregar-producto').click( function(e) {
     var name = $('#name').val();
     var price = $('#price').val();
     if (!(name == "" || price == "")) {
