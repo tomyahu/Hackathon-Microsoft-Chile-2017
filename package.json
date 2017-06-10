@@ -10,8 +10,13 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "fs": "0.0.1-security",
     "hbs": "~4.0.1",
+    "letsencrypt-express": "^2.0.6",
+    "mercadopago": "^0.5.0",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "socket.io": "^2.0.2",
+    "sqlite3": "^3.1.8"
   }
 }
