@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
 
 
 /**
@@ -9,8 +8,6 @@ const fs = require('fs');
 
 var app = require('../app');
 var debug = require('debug')('app:server');
-var http = require('https');
-
 /**
  * Get port from environment and store in Express.
  */
@@ -22,10 +19,6 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer( {
-	key: fs.readFileSync( __dirname + '/../certs/server.key' ),
-  cert: fs.readFileSync( __dirname + '/../certs/server.crt' ),
-}, app);
 
 /**
  * Listen on provided port, on all network interfaces.

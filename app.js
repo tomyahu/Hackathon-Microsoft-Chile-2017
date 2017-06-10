@@ -8,7 +8,8 @@ var appId = '6407018727119024';
 var appSecret = 'x1ATexGjwQ8qhitG2FSxTARp9f4CXgfk';
 var urlbase = 'https://pagameme.cuy.cl';
 var MP = require( 'mercadopago' );
-
+var fs = require('fs');
+var http = require('https');
 var app = express();
 
 // view engine setup
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/:id', function(req, res, next) {
+app.get( '/:id?', function(req, res, next) {
 	if( req.query.code ) {
 		userCode = req.query.code;
 		request.post( {
@@ -79,9 +80,9 @@ app.use(function(req, res, next) {
 
 // Memory
 
-var estado = {bills: [{id: 1, name: "Carrete Post Hackathon", status:0}],
-		products: [{id: 1, bill: 1, name: "Comida", price: 1250}],
-		people: [{id: 1, bill: 1, name: "Tomimi", email: "tomyahu@gmail.com"}],
+var state = {bills: [{name: "Carrete Post Hackathon", status:0}],
+		products: [{bill: 1, name: "Comida", price: 1250}],
+		people: [{bill: 1, name: "Tomimi", email: "tomyahu@gmail.com"}],
 		product_people: [{person_id: 1, product_id: 1}]}
 
 
@@ -96,4 +97,47 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+var server = http.createServer( {
+	key: fs.readFileSync( __dirname + '/certs/server.key' ),
+  cert: fs.readFileSync( __dirname + '/certs/server.crt' ),
+}, app);
+
+var s1 = server.listen( '443' );
+
+
+var io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('add-product', function(data) {
+    state.products.push(data);
+    // Broadcast info about this
+  });
+  socket.on('add-person', function(data) {
+    state.people.push(data);
+    // broadcast info about this
+  });
+  socket.on('remove-me-from-product', function(data) {
+    state.products_people = state.products_people.filter(function (data) {
+      if (data.person_id == data.id) {
+        return false;
+      }
+      return true;
+    });
+  });
+  socket.on('add-me-to-product', function(data) {
+    state.products_people.push(data);
+  });
+  socket.on('close_bill', function(data) {
+     // Close bill and broadcast it
+  });
+
+  socket.on('disconnect', function() {
+    console.log('user disconnected');
+  });
+});
+
+server.listen(3000, function(){
+  console.log('listening on *:3000');
+});
