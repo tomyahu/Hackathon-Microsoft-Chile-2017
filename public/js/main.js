@@ -1,6 +1,5 @@
 $(function () {
   var socket = io();
-
   $('#agregar-producto').click( function(e) {
     console.log("hola!");
     var name = $('#name').val();
