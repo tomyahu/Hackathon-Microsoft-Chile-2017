@@ -35,51 +35,50 @@ $(function () {
     });
     console.log(html);
     $("#products-table").html(html);
+
+    $('#agregar-producto').click( function(e) {
+      console.log("hola!");
+      var name = $('#name').val();
+      var price = $('#price').val();
+      if (!(name == "" || price == "")) {
+        socket.emit('add-product', {name: name, price: price});
+        $('#name').val("");
+        $('#price').val("");
+      }
+    });
+
+    $(".checkbox-producto").click( function(e) {
+      p_id = e.target.val();
+      if (e.target.is(":checked")) {
+        socket.emit("add-me-to-product", {product_id: p_id, person_id: email })
+      } else {
+        socket.emit("remove-me-to-product", {product_id: p_id, person_id: email })
+      }
+    });
+
+    $("#yopagare").click( function(e) {
+        socket.emit("pagare", {email: email})
+    });
+
+    function pedirNombre() {
+        var txt;
+        name = prompt("Ingresa tu nombre:", "Jorge Perez");
+        if (name == null || name == "") {
+            txt = "Error: nombre inválido";
+        } else {
+            pedirMail();
+        }
+    }
+
+    function pedirMail() {
+        var txt;
+        email = prompt("Ingresa tu Mail:", "soylacomadreja@yomail.com");
+        if (email == null || email == "") {
+            txt = "Error: mail inválido";
+        } else {
+          socket.emit("add-user", {name: name, email: email})
+        }
+    }
   })
-
-
-  $('#agregar-producto').click( function(e) {
-    console.log("hola!");
-    var name = $('#name').val();
-    var price = $('#price').val();
-    if (!(name == "" || price == "")) {
-      socket.emit('add-product', {name: name, price: price});
-      $('#name').val("");
-      $('#price').val("");
-    }
-  });
-
-  $(".checkbox-producto").click( function(e) {
-    p_id = e.target.val();
-    if (e.target.is(":checked")) {
-      socket.emit("add-me-to-product", {product_id: p_id, person_id: email })
-    } else {
-      socket.emit("remove-me-to-product", {product_id: p_id, person_id: email })
-    }
-  });
-
-  $("#yopagare").click( function(e) {
-      socket.emit("pagare", {email: email})
-  });
-
-  function pedirNombre() {
-      var txt;
-      name = prompt("Ingresa tu nombre:", "Jorge Perez");
-      if (name == null || name == "") {
-          txt = "Error: nombre inválido";
-      } else {
-          pedirMail();
-      }
-  }
-
-  function pedirMail() {
-      var txt;
-      email = prompt("Ingresa tu Mail:", "soylacomadreja@yomail.com");
-      if (email == null || email == "") {
-          txt = "Error: mail inválido";
-      } else {
-        socket.emit("add-user", {name: name, email: email})
-      }
-  }
 
 });
