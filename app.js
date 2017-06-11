@@ -83,7 +83,7 @@ app.use(function(req, res, next) {
 var state = {bills: [{name: "Carrete Post Hackathon", status:0}],
 		products: [{bill: 1, name: "Comida", price: 1250}],
 		people: [{bill: 1, name: "Tomimi", email: "tomyahu@gmail.com"}],
-		product_people: [{person_id: 1, product_id: 1}]}
+		products_people: [{person_id: 1, product_id: 1}]}
 
 
 // error handler
@@ -110,6 +110,7 @@ var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
   console.log('a user connected');
+	socket.emit('state', state);
   socket.on('add-product', function(data) {
 		console.log("Recibí algo! " + data.name + ", " + data.price);
     state.products.push(data);
@@ -130,7 +131,7 @@ io.on('connection', function(socket){
   socket.on('add-me-to-product', function(data) {
     state.products_people.push(data);
   });
-  socket.on('close_bill', function(data) {
+  socket.on('close-bill', function(data) {
      // Close bill and broadcast it
   });
 
