@@ -114,11 +114,12 @@ io.on('connection', function(socket){
   socket.on('add-product', function(data) {
 		console.log("Recibí algo! " + data.name + ", " + data.price);
     state.products.push(data);
-    // Broadcast info about this
+		socket.emit('state', state);
   });
   socket.on('add-person', function(data) {
     state.people.push(data);
-    // broadcast info about this
+		socket.emit('state', state);
+
   });
   socket.on('remove-me-from-product', function(data) {
     state.products_people = state.products_people.filter(function (data) {
@@ -126,13 +127,16 @@ io.on('connection', function(socket){
         return false;
       }
       return true;
+			socket.emit('state', state);
     });
   });
   socket.on('add-me-to-product', function(data) {
     state.products_people.push(data);
+		socket.emit('state', state);
   });
   socket.on('close-bill', function(data) {
      // Close bill and broadcast it
+		 socket.emit('state', state);
   });
 
   socket.on('disconnect', function() {
