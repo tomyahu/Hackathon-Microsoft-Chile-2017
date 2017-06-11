@@ -3,6 +3,7 @@ var email;
 $(function () {
   var socket = io();
   socket.on('state', function(s) {
+    console.log("state!");
     var html = "";
     state = s;
     s.products.forEach(function(p,id) {
