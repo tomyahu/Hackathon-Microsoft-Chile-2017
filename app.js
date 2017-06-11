@@ -87,9 +87,9 @@ app.use(function(req, res, next) {
 // Memory
 
 var state = {bills: [{name: "Carrete Post Hackathon", status:0}],
-		products: [{bill: 1, name: "Comida", price: 1250}],
-		people: [{bill: 1, name: "Tomimi", email: "tomyahu@gmail.com"}],
-		product_people: [{person_id: 1, product_id: 1}]}
+		products: [{name: "Comida", price: 1250}],
+		people: [{name: "Tomimi", email: "tomyahu@gmail.com"}],
+		product_people: [{person_id: 0, product_id: 0}]}
 
 
 // error handler
