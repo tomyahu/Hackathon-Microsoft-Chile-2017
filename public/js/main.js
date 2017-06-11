@@ -56,10 +56,10 @@ $(function () {
     } else {
       socket.emit("remove-me-to-product", {product_id: p_id, person_id: email })
     }
-  })
+  });
 
-  $("#yopagare").click(function(e) {
-      socket.emit("pagare"{email: email})
+  $("#yopagare").click( function(e) {
+      socket.emit("pagare", {email: email})
   });
 
   function pedirNombre() {
