@@ -1,6 +1,9 @@
 var state;
 var email;
 $(function () {
+	
+  pedirNombre();
+	
   var socket = io();
   socket.on('state', function(s) {
     var html = "";
@@ -45,3 +48,26 @@ $(function () {
   });
 
 });
+
+
+function pedirMail() {
+    var txt;
+    var mail = prompt("Ingresa tu Mail:", "soylacomadreja@yomail.com");
+    if (mail == null || mail == "") {
+        txt = "Error: mail inválido";
+    } else {
+        
+    }
+}
+
+function pedirNombre() {
+    var txt;
+    var person = prompt("Ingresa tu nombre:", "Jorge Perez");
+    if (person == null || person == "") {
+        txt = "Error: nombre inválido";
+    } else {
+		//cosas de eduardo
+		
+        pedirMail();
+    }
+}
