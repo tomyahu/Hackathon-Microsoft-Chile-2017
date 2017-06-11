@@ -28,7 +28,7 @@ $(function () {
                     <td>'+p.price / inproduct.length +'</td>\
                      <td class="big-text">'+ inproduct.reduce(function(p,v) {
                        return v + ", " + p.name;
-                     }) +'</td>\
+                     },"") +'</td>\
                   </tr>';
     });
     console.log(html);
