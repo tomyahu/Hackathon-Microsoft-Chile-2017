@@ -13,7 +13,7 @@ $(function () {
       s.products_people.forEach(function(pp) {
         if (pp.product_id == p_id) {
           inproduct.push(s.people[pp.person_id]);
-          if (s.people[pp.person_id].email == myemail) {
+          if (s.people[pp.person_id].email == email) {
             me = true;
           }
         }
