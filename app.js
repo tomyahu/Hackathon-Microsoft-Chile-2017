@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var appId = '6407018727119024';
 var appSecret = 'x1ATexGjwQ8qhitG2FSxTARp9f4CXgfk';
-var urlbase = 'https://pagameme.cuy.cl';
+var urlbase = 'https://pagameme.cuy.cl/';
 var MP = require( 'mercadopago' );
 var fs = require('fs');
 var http = require('https');
+var request = require('request');
 var app = express();
 
 // view engine setup
@@ -38,7 +39,10 @@ app.get( '/:id?', function(req, res, next) {
 				'redirect_uri': urlbase
 			}
 		}, function( error, response, body ) {
-			if( error ) return;
+			if( error || body.error ) {
+				console.log( error );
+				return;
+			}
 
 			var mp = new MP( body.access_token );
 			//traer datos desde el socket
@@ -55,19 +59,21 @@ app.get( '/:id?', function(req, res, next) {
 
 			mp.createPreference( preference, function (err, data){
 				if( err ) {
-					res.send (err); //enviar error
+					console.log(err); //enviar error
 					return;
 				}
 
 				//enviar boton para que paguen
-				res.render ("button", {"preference": data});
-
+				for( var i = 0; i < people.length; i++ ) {
+					people[i].emit();
+				}
 			} );
 
 		} );
+
 	}
 
-	res.render('index', { title: 'Pagameme', appId: appId });
+	res.render('index', { title: 'Pagameme', appId: appId, code: req.query.code });
 });
 
 
@@ -83,7 +89,7 @@ app.use(function(req, res, next) {
 var state = {bills: [{name: "Carrete Post Hackathon", status:0}],
 		products: [{bill: 1, name: "Comida", price: 1250}],
 		people: [{bill: 1, name: "Tomimi", email: "tomyahu@gmail.com"}],
-		products_people: [{person_id: 1, product_id: 1}]}
+		product_people: [{person_id: 1, product_id: 1}]}
 
 
 // error handler
@@ -107,10 +113,10 @@ var s1 = server.listen( '443' );
 
 
 var io = require('socket.io')(server);
-
+var people = [];
 io.on('connection', function(socket){
   console.log('a user connected');
-	socket.emit('state', state);
+	people.push( socket );
   socket.on('add-product', function(data) {
 		console.log("Recibí algo! " + data.name + ", " + data.price);
     state.products.push(data);
@@ -131,7 +137,7 @@ io.on('connection', function(socket){
   socket.on('add-me-to-product', function(data) {
     state.products_people.push(data);
   });
-  socket.on('close-bill', function(data) {
+  socket.on('close_bill', function(data) {
      // Close bill and broadcast it
   });
 
