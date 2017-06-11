@@ -1,11 +1,9 @@
 var state;
 var email;
 $(function () {
-
-  pedirNombre();
-
   var socket = io();
   socket.on('state', function(s) {
+    pedirNombre();
     console.log("state!");
     var html = "";
     state = s;
