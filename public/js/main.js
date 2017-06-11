@@ -24,8 +24,8 @@ $(function () {
                     </td>\
                     <td class="mdl-data-table__cell--non-numeric big-text">'+p.name+'</td>\
                     <td>'+p.price+'</td>\
-                    <td>'+len(inproduct) +'</td>\
-                    <td>'+p.price / len(inproduct)+'</td>\
+                    <td>'+inproduct.length +'</td>\
+                    <td>'+p.price / inproduct.length +'</td>\
                      <td class="big-text">'+ inproduct.reduce(function(p,v) {
                        return v + ", " + p.name;
                      }) +'</td>\
